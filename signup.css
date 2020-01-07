@@ -1,0 +1,113 @@
+.body{
+     
+  background: url("pic.jpg");
+	 background-size: cover;
+
+     margin: 0px;
+     padding:0px;
+     font-family: sans-serif;
+    }
+   .p2{
+    
+     margin-top:30;
+	padding: 0 0 2px;
+	text-align: center;
+	font-size: 62px;
+	color: #fff;
+       }
+
+   .login-box{
+
+   width: 520px;
+   height: 495px;
+   background: rgba(0,0,0,0.5);
+   color: #fff;
+   top: 50%;
+   left :50%;
+   position:absolute;
+   transform: translate(-50%,-50%);
+   box-sizing: border-box;
+   align-items: center;
+   padding: 70px 30px;
+ }   
+ .login-box p{
+
+ 	margin: 5px;
+
+ 	padding: 0;
+ 	font-weight: bold;
+ }
+
+h1
+{  
+	margin: 0;
+	padding: 0 0 2px;
+	text-align: center;
+	font-size: 22px;
+	color: #4367c4;
+}
+
+.login-box input{
+
+	width: 100%;
+	margin-bottom: 20px;
+}
+.login-box input[type="button"],input[type="submit"]
+{
+
+
+           margin-top: 10px;
+          margin-left:30px;  
+		width: 180px;
+       height: 50px;
+       background-color:#fff;
+       align-self: center;
+       background: black;
+       color: white;
+       
+
+}
+a{
+	text-decoration: none;
+	color: white;
+
+}
+#txt6,#txt7
+{
+  color: red;
+  text-align: center;
+}
+#txt90
+{
+  color: blue;
+  text-align: center;
+}
+
+    #Signup-form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f2f2f2;
+    }
+
+
+
+    #Signup-form input {
+        box-sizing: border-box;
+        width: 100%;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #Signup-form input[type=submit] {
+        border: 0;
+        background: #4367c4;
+        color: #fff;
+    }
+
+    #Signup-form input[type=button] {
+        border: 0;
+        background: #4367c4;
+        width: 100%;
+        color: #fff;
+    }

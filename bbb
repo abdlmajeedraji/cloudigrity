@@ -1,0 +1,65 @@
+function validate() {
+	var email = document.forms["login"]["email"].value;
+	var password = document.forms["login"]["password"].value;
+	var text;
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	//--------------- EMAIL VALIDATION----------------------
+	if (email == "") {
+		text = "field is empty"
+		document.getElementById("txt2").innerHTML = text;
+		event.preventDefault();
+	}
+	else if (!mailformat.test(email)) {
+		text = "enter a valid email"
+		document.getElementById("txt2").innerHTML = text;
+		event.preventDefault();
+	}
+	else {
+		document.getElementById("txt2").innerHTML = "";
+	}
+	//----------------PASSWORD VALIDATION----------------------
+	if (password == "") {
+		text = "field is empty"
+		document.getElementById("txt3").innerHTML = text;
+		event.preventDefault();
+	}
+	else if (password.length < 5) {
+		text = "enter a valid password"
+		document.getElementById("txt3").innerHTML = text;
+		event.preventDefault();
+	}
+	else {
+		document.getElementById("txt3").innerHTML = "";
+	}
+		//Arrays of files to create digital signature
+	var fname = document.getElementById("fname").value;
+	var digitalsignature = document.getElementById("digitalsignature").value;
+	var lname = document.getElementById("lname").value;
+	var uname = document.getElementById("uname").value;
+	var email = document.getElementById("email").value;
+	var data = [fname, uname, lname, email, digitalsignature];
+	//document.write(data);
+	// Run a quick encryption/decryption when they click.
+	// Encrypt with the public key...
+	var encrypt = new JSEncrypt();
+	encrypt.setPublicKey($('#pubkey').val());
+	var encrypted = encrypt.encrypt($('#input').val());
+	document.write(encrypted);
+	document.write(".................................................");
+	// Decrypt with the private key...
+	var decrypt = new JSEncrypt();
+	decrypt.setPrivateKey($('#privkey').val());
+	var uncrypted = decrypt.decrypt(encrypted);
+	document.write(uncrypted);
+
+	// Now a simple check to see if the round-trip worked.
+	if (uncrypted == $('#input').val()) {
+		alert('It works!!!');
+
+	}
+	else {
+		alert('Something went wrong....');
+	}
+
+}
+

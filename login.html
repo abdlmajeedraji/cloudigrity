@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <title>login</title>
+  <link rel="stylesheet" type="text/css" href="login.css">
+  <script type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha512.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha512.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha512.min.js"></script>
+  </style>
+  <script src="login.js"></script>
+<head>
+<style>
+        .header {
+            padding: 60px;
+            text-align: center;
+            background: #1abc9c;
+            color: white;
+            font-size: 30px;
+        }
+
+        input[type=text],
+        select {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            background-color: orange;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: darkorange;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        th {
+            background-color: #4367c0;
+            color: white;
+        }
+
+        #btn {
+            width: 5%;
+            height: 50px;
+            font-size: 18px;
+        }
+
+        #fileUpload {
+            background-color: orange;
+            border: none;
+            color: white;
+            padding: 5px 5px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 5px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            /* Safari */
+            transition-duration: 0.4s;
+        }
+
+        #upload {
+            background-color: #4367c0;
+            border: none;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            /* Safari */
+            transition-duration: 0.4s;
+        }
+
+        .button {
+              background-color: #4367c0;
+            border: none;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            /* Safari */
+            transition-duration: 0.4s;
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        .header {
+            padding: 5px;
+            text-align: center;
+            background: #4367c4;
+            color: white;
+            font-size: 20px;
+        }
+
+        .loader {
+            display: none;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 5px solid #3498db;
+            width: 50px;
+            height: 50px;
+            -webkit-animation: spin 2s linear infinite;
+            /* Safari */
+            animation: spin 5s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        var source = new EventSource("/progress");
+        source.onmessage = function (event) {
+            $('.progress-bar').css('width', event.data + '%').attr('aria-valuenow', event.data);
+            $('.progress-bar-label').text(event.data + '%');
+            if (event.data == 100) {
+                source.close()
+            }
+        }
+    </script>
+    <script>
+        function showDiv() {
+            document.getElementById('loadingdiv').style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        Cloudigrity
+    </div>
+  <form id="login-form" name="login" onsubmit="validate()"  method="post">
+    <h1>Login</h1>
+    <input type="email" placeholder="Email" name= "email"id="email" required />
+    <P id="txt6"></P>
+
+    <input type="password" name="password"placeholder="Password" id="password" required />
+    <P id="txt7"></P>
+
+    <input type="submit" value="Sign In" />
+    <input type="button" value="New User ? Resgiter" onclick="window.location='signup.html';">
+
+  </form>
+  <script type="text/javascript"> //AES ENCRYPTION AFTER MERGING ENTERED DETAILS
+    $( "form" ).on( "submit", function( event ) {
+      event.preventDefault();
+      var formString = $( this ).serialize(); // All data in one String.
+      var encrypted = CryptoJS.AES.encrypt(formString, "Secret Passphrase");
+      var hash = CryptoJS.MD5(formString);
+    //  var decrypted = CryptoJS.AES.decrypt(encrypted,"Secret Passphrase").toString(CryptoJS.enc.Utf8);
+      window.location.href = "http://localhost:8080/cloudigrity/login1.php?encrypted=" + encrypted+"&hash="+hash;
+     // alert(formString);
+      //alert(encrypted);
+      //alert(decrypted);
+      //document.write(encrypted);
+      //Now use $.post here to send post data to your backend.
+    });
+    </script>
+</body>
+
+</html>
+<a href="https://github.com/atoyebii" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#04AA75; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
