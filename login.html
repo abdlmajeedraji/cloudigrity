@@ -208,7 +208,7 @@
       var encrypted = CryptoJS.AES.encrypt(formString, "Secret Passphrase");
       var hash = CryptoJS.MD5(formString);
     //  var decrypted = CryptoJS.AES.decrypt(encrypted,"Secret Passphrase").toString(CryptoJS.enc.Utf8);
-      window.location.href = "http://cloudigrit-cloudigrity.apps.us-east-1.starter.openshift-online.com//login1.php?encrypted=" + encrypted+"&hash="+hash;
+      window.location.href = "http://cloudigrit-cloudigrity.apps.us-east-1.starter.openshift-online.com/login1.php?encrypted=" + encrypted+"&hash="+hash;
      // alert(formString);
       //alert(encrypted);
       //alert(decrypted);
