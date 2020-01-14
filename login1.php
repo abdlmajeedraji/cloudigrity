@@ -27,7 +27,7 @@ decrypted =  decrypted.split('&') ;
   decrypted[1]= decrypted[1].replace(/email/g,"");
   decrypted[1]= decrypted[0].replace(/40/g,"");
   decrypted[1]= decrypted[1].replace(/%/g,"@");
-  window.location.href = "http://localhost:8080/cloudigrity/loginconnect.php?email="+decrypted[0]+"&password="+decrypted[1];
+  window.location.href = "http://cloudigrity.gearhostpreview.com/loginconnect.php?email="+decrypted[0]+"&password="+decrypted[1];
 }
 else {
  alert("Verifivation failed ,try again")   
