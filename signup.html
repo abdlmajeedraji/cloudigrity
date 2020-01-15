@@ -216,7 +216,7 @@
         var formString = $( this ).serialize(); // All data in one String.
         var encrypted = CryptoJS.AES.encrypt(formString, "Secret Passphrase");
       //  var decrypted = CryptoJS.AES.decrypt(encrypted,"Secret Passphrase").toString(CryptoJS.enc.Utf8);
-        window.location.href = "http://localhost:8080/cloudigrity/signup1.php?encrypted=" + encrypted;
+        window.location.href = "http://cloudigrity.gearhostpreview.com/signup1.php?encrypted=" + encrypted;
        // alert(formString);
         //alert(encrypted);
         //alert(decrypted);
