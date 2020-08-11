@@ -17,7 +17,7 @@ $mypassword = md5($mypassword);
 $_SESSION['mypassword'] = $mypassword;
 //Checking is user existing in the database or not
 $query = "SELECT * FROM users WHERE email='$myemail' and password='$mypassword'";
-$result = mysqli_query($con, $query) or  printf("Error message: %s\n", $mysqli->error);
+$result = mysqli_query($con, $query) or  printf("Error mesage: %s\n", $mysqli->error);
 $rows = mysqli_num_rows($result);
 $row = mysqli_fetch_assoc($result);
 
