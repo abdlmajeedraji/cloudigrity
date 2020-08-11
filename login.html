@@ -210,7 +210,7 @@
             var encrypted = CryptoJS.AES.encrypt(formString, "Secret Passphrase");
             var hash = CryptoJS.MD5(formString);
             //  var decrypted = CryptoJS.AES.decrypt(encrypted,"Secret Passphrase").toString(CryptoJS.enc.Utf8);
-            window.location.href = "http://localhost/cloudigrity/login1.php?encrypted=" + encrypted + "&hash=" + hash;
+            window.location.href = "http://cloudigrity.gearhostpreview.com/login1.php?encrypted=" + encrypted + "&hash=" + hash;
             // alert(formString);
             //alert(encrypted);
             //alert(decrypted);
