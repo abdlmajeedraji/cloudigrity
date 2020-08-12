@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect("den1.mysql1.gear.host","cloudigrity","Sn0Ef0X0hv~-","cloudigrity");
+$con = mysqli_connect("den1.mysql3.gear.host","cloudigrity","Sn0Ef0X0hv~-","cloudigrity");
 // Check connection
 if (mysqli_connect_errno())
   {
